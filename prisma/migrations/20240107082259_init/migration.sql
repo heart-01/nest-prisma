@@ -2,7 +2,6 @@
 CREATE TABLE `Product` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(191) NOT NULL,
-    `description` VARCHAR(191) NULL,
     `price` DOUBLE NOT NULL,
     `sale` BOOLEAN NOT NULL DEFAULT false,
     `avaliability` ENUM('IN_STOCK', 'ONLINE', 'OUT_OF_STOCK', 'COMING_SOON') NOT NULL,
