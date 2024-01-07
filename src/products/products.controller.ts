@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { Prisma } from '@prisma/client';
 import { ApiBody } from '@nestjs/swagger';
@@ -14,6 +22,27 @@ export class ProductsController {
         name: { type: 'string' },
         price: { type: 'number' },
         avaliability: { enum: ['ONLINE', 'IN_STOCK'] },
+        description: {
+          type: 'object',
+          properties: {
+            create: {
+              type: 'object',
+              properties: { content: { type: 'string' } },
+            },
+          },
+        },
+        tags: {
+          type: 'object',
+          properties: {
+            create: {
+              type: 'array',
+              items: {
+                type: 'object',
+                properties: { content: { type: 'string' } },
+              },
+            },
+          },
+        },
       },
     },
   })
