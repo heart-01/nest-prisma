@@ -18,6 +18,7 @@ model Product {
   avaliability  Avaliability
   description   Description?
   reviews       Review[]
+  tags          Tag[]
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
   deletedAt     DateTime?
@@ -38,7 +39,14 @@ model Review {
   content       String
   rating        Int
   product       Product     @relation(fields: [productId], references: [id])
-  productId     Int         @unique
+  productId     Int         
+}
+
+// m:n relation
+model Tag {
+  id            Int         @id @default(autoincrement())
+  content       String
+  products      Product[]
 }
 
 enum Avaliability {
