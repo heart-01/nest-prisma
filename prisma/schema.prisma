@@ -17,14 +17,26 @@ model Product {
   sale          Boolean         @default(false)
   avaliability  Avaliability
   description   Description?
+  reviews       Review[]
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
   deletedAt     DateTime?
 }
 
+// 1:1 relation
 model Description {
   id            Int         @id @default(autoincrement())
   content       String
+  product       Product     @relation(fields: [productId], references: [id])
+  productId     Int         @unique
+}
+
+// 1:n relation
+model Review {
+  id            Int         @id @default(autoincrement())
+  title         String
+  content       String
+  rating        Int
   product       Product     @relation(fields: [productId], references: [id])
   productId     Int         @unique
 }
